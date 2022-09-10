@@ -1,0 +1,9 @@
+---
+
+- name: Deploy Weabapp
+  hosts: localhost
+  become: true
+  gather_facts: False
+
+  roles:
+    - deploy-webapp

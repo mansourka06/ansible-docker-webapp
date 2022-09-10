@@ -1,0 +1,11 @@
+---
+# vars file for deploy-webapp
+
+# DOCKER INSTALL VARS
+download_path: "/tmp/dev"
+docker_url: "https://download.docker.com/linux/ubuntu focal stable"
+apt_repository: "deb [arch=amd64] {{ docker_url }} focal stable"
+
+
+# DEPLOY WEBAPP VARS
+work_dir: /tmp/dev

@@ -1,0 +1,45 @@
+---
+- name: Ensure work_dir directory exists
+  file:
+    state: directory
+    dest: "{{ work_dir }}"
+    mode: '0755'
+
+- name: Ensure requirements are installed
+  apt: 
+    name: "{{ item }}"
+    update_cache: yes
+    state: present
+  loop:
+    - git
+    - nginx
+
+- name: Clone webapp files from Github to webapp host
+  git:
+    repo: https://github.com/mansourka06/webapp-example.git
+    dest: "{{ work_dir }}"
+
+- name: Pull nginx docker image
+  docker_image:
+    name: nginx
+    tag: latest
+    source: pull
+
+- name: Run docker container
+  docker_container:
+    name: WebApp
+    image: nginx:latest
+    state: started
+    exposed_ports:
+    - "80"
+    ports:
+    - "80:80"
+    volumes:
+    - "{{ work_dir }}/:/usr/sbin/nginx"
+
+- name: Build Webapp image
+  docker_image:
+    path: "{{ work_dir }}"
+    name: mywebapp
+    tag: v1
+
