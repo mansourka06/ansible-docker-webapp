@@ -1,13 +1,19 @@
 ---
-# tasks file for deploy-webapp
-
 - name: "DEPLOY WEBAPP - Install Docker"
-  import_task: docker_{{ ansible_os_family }}.yml
-  tags: 
-    - docker
-    - deploy-webapp
+  include_tasks:
+    file: docker_debian.yml
+    apply:
+      tags:
+        - docker
+  when: ansible_distribution == "Debian"
 
 - name: "DEPLOY WEBAPP - Lauch Webapp deployment"
-  import_task: deploy_webapp.yml
+  include_tasks:
+    file: deploy_webapp.yml
+    apply:
+      tags:
+        - webapp
   tags: 
-    - deploy-webapp
+    - always
+
+...

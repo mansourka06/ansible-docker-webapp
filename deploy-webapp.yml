@@ -1,9 +1,9 @@
 ---
 
 - name: Deploy Weabapp
-  hosts: localhost
+  hosts: "{{ playbook_host }}"
   become: true
-  gather_facts: False
+  gather_facts: true
 
   roles:
     - deploy-webapp

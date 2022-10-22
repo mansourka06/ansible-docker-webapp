@@ -3,9 +3,20 @@
 
 # DOCKER INSTALL VARS
 download_path: "/tmp/dev"
-docker_url: "https://download.docker.com/linux/ubuntu focal stable"
+docker_debian_url: "https://download.docker.com/linux/debian"
 apt_repository: "deb [arch=amd64] {{ docker_url }} focal stable"
 
+docker_version: latest
+
+packages:
+  - apt-transport-https 
+  - ca-certificates
+  - curl
+  - gnupg 
+  - lsb-release
+  - software-properties-common
 
 # DEPLOY WEBAPP VARS
 work_dir: /tmp/dev
+
+

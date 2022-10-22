@@ -1,11 +1,11 @@
 ---
-- name: Ensure work_dir directory exists
+- name: "Ensure work_dir directory exists"
   file:
     state: directory
     dest: "{{ work_dir }}"
     mode: '0755'
 
-- name: Ensure requirements are installed
+- name: "Install requirements packages"
   apt: 
     name: "{{ item }}"
     update_cache: yes
@@ -13,7 +13,7 @@
   loop:
     - git
     - nginx
-
+  
 - name: Clone webapp files from Github to webapp host
   git:
     repo: https://github.com/mansourka06/webapp-example.git
