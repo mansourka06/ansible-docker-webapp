@@ -7,10 +7,8 @@ This repository automate a Webapp deployment in Docker container using Ansible.
 
 
 ## Os available:
-[x] Debian
-[ ] RedHat
-[ ] Windows server 2012
-[ ] Windows server 2016
+- [x] Debian
+- [x] RedHat
 
 ## Dependences:
 * Apache
